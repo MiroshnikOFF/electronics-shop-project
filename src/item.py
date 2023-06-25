@@ -38,10 +38,16 @@ class Item:
 
     @property
     def name(self):
+        """
+        Возвращает название товара
+        """
         return self.__name
 
     @name.setter
     def name(self, new_name):
+        """
+        Позволяет изменить название товара
+        """
         if len(new_name) <= 10:
             self.__name = new_name
         else:
@@ -49,6 +55,9 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
+        """
+        Инициализирует экземпляры класса `Item` данными из файла _src/items.csv
+        """
         Item.all.clear()
         with open('../src/items.csv', encoding='cp1251') as csv_file:
             file = DictReader(csv_file)
@@ -60,6 +69,9 @@ class Item:
 
     @staticmethod
     def string_to_number(num):
+        """
+        Возвращает число из числа-строки
+        """
         return int(num.split('.')[0])
 
 
