@@ -3,10 +3,12 @@
 from src.item import Item
 import pytest
 
+
 @pytest.fixture
 def get_product():
     product = Item("product", 500, 10)
     return product
+
 
 def test_item_creation():
     expected_all_count = len(Item.all) + 1
@@ -18,6 +20,22 @@ def test_item_creation():
     assert item.price == price
     assert item.quantity == quantity
     assert len(Item.all) == expected_all_count
+
+
+def test_repr():
+    product = Item("product", 500, 10)
+    class_name = product.__class__.__name__
+    name = product.name
+    price = product.price
+    quantity = product.quantity
+    expected_result = f"{class_name}('{name}', {price}, {quantity})"
+    assert repr(product) == expected_result
+
+
+def test_str():
+    product = Item("product", 500, 10)
+    expected_result = product.name
+    assert str(product) == expected_result
 
 
 @pytest.mark.parametrize("price, quantity", [
