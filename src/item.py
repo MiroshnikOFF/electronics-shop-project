@@ -86,6 +86,10 @@ class Item:
         """
         return int(num.split('.')[0])
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return int(self.quantity) + int(other.quantity)
+
 
 
 
