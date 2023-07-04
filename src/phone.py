@@ -7,10 +7,6 @@ class Phone(Item):
         super().__init__(name, price, quantity)
         self.__number_of_sim = number_of_sim
 
-    def __add__(self, other):
-        if isinstance(other, Item):
-            return int(self.quantity) + int(other.quantity)
-
     def __repr__(self):
         return f"{super().__repr__().split(')')[0]}, {self.number_of_sim})"
 
