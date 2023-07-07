@@ -2,10 +2,12 @@ from src.phone import Phone
 from src.item import Item
 import pytest
 
+
 @pytest.fixture
 def get_phone():
     phone = Phone("iPhone 14", 120_000, 5, 2)
     return phone
+
 
 @pytest.fixture
 def get_item():
