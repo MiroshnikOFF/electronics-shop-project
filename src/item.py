@@ -2,7 +2,12 @@ from csv import DictReader
 
 
 class InstantiateCSVError(Exception):
-    pass
+
+    def __init__(self, *args):
+        self.message = args[0] if args else None
+
+    def __str__(self):
+        return self.message
 
 
 class Item:
@@ -86,12 +91,11 @@ class Item:
                 file = DictReader(csv_file)
                 for row in file:
                     if len(row) != 3:
-                        raise InstantiateCSVError("InstantiateCSVError: Файл item.csv поврежден")
-                    else:
-                        name = row['name']
-                        price = row['price']
-                        quantity = row['quantity']
-                        cls(name, price, quantity)
+                        raise InstantiateCSVError("Файл item.csv поврежден")
+                    name = row['name']
+                    price = row['price']
+                    quantity = row['quantity']
+                    cls(name, price, quantity)
 
 
     @staticmethod
