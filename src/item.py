@@ -2,6 +2,7 @@ from csv import DictReader
 
 
 class InstantiateCSVError(Exception):
+    """Класс исключения при проверке csv файла на повреждения"""
 
     def __init__(self, *args):
         self.message = args[0] if args else None
