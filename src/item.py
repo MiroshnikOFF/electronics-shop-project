@@ -83,19 +83,18 @@ class Item:
         try:
             with open('../src/items.csv', encoding='cp1251') as csv_file:
                 file = DictReader(csv_file)
-        except FileNotFoundError:
-            print('FileNotFoundError: Отсутствует файл item.csv')
-        else:
-            Item.all.clear()
-            with open('../src/items.csv', encoding='cp1251') as csv_file:
-                file = DictReader(csv_file)
+                Item.all.clear()
                 for row in file:
                     if len(row) != 3:
-                        raise InstantiateCSVError("Файл item.csv поврежден")
+                        raise InstantiateCSVError
                     name = row['name']
                     price = row['price']
                     quantity = row['quantity']
                     cls(name, price, quantity)
+        except FileNotFoundError:
+            print('FileNotFoundError: Отсутствует файл item.csv')
+        except InstantiateCSVError:
+            print("InstantiateCSVError: Файл item.csv поврежден")
 
 
     @staticmethod
